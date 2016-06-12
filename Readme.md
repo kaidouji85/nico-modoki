@@ -14,9 +14,16 @@ npm install
 
 | 環境変数名              | 値                      |
 |:-----------------------|:-----------------------|
-| CLOUDINALY_CLOUD_NAME | cloudinalyのcloud-name   |
-| CLOUDINALY_API_KEY    | cloudinalyのapi-key      |
-| CLOUDINALY_API_SECRET | cloudinalyのapi-secret   |
+| CLOUDINARY_URL | cloudinaly url   |
+
+CLOUDINARY_URLはherokuに設定されている環境変数です。
+今回の開発ではcloudinaryのheroku add onを使っている関係上、
+認証系の状態はheroku側にあります。
+ローカル環境だと以下コマンドで見ることができます。
+
+```
+heroku config | grep CLOUDINARY
+```
 
 こんな感じのシェルを作っておけば便利です。
 というか、以下の説明ではこのシェルを作った前提でいきます。
@@ -25,13 +32,8 @@ start.sh
 ```bash
 #!/bin/sh
 
-CLOUDINALY_CLOUD_NAME=""
-CLOUDINALY_API_KEY=""
-CLOUDINALY_API_SECRET=""
-
-export CLOUDINALY_CLOUD_NAME
-export CLOUDINALY_API_KEY
-export CLOUDINALY_API_SECRET
+CLOUDINARY_URL="値を入れる"
+export CLOUDINARY_URL
 
 npm start
 ```
